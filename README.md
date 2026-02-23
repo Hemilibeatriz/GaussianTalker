@@ -23,12 +23,21 @@ For more information, please check out our [Paper](https://arxiv.org/abs/2404.16
 We implemented & tested **GaussianTalker** with NVIDIA RTX 3090 and A6000 GPU.
 
 Run the below codes for the environment setting. ( details are in requirements.txt )
+Updated by Hemilibeatriz
 ```bash
-git clone https://github.com/joungbinlee/GaussianTalker.git
+git clone https://github.com/cvlab-kaist/GaussianTalker.git
 cd GaussianTalker
 git submodule update --init --recursive
 conda create -n GaussianTalker python=3.7 
 conda activate GaussianTalker
+
+export CC=/usr/bin/gcc-9
+export CXX=/usr/bin/g++-9
+export CUDA_HOME=/usr/local/cuda-11.3
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 
 pip install -r requirements.txt
 pip install -e submodules/custom-bg-depth-diff-gaussian-rasterization
