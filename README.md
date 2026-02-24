@@ -30,7 +30,7 @@ Updated by Hemilibeatriz
 git clone https://github.com/Hemilibeatriz/GaussianTalker.git
 cd GaussianTalker
 git submodule update --init --recursive
-conda create -n GaussianTalker python=3.7 
+conda create -n GaussianTalker python=3.7 -y
 conda activate GaussianTalker
 
 mkdir -p $CONDA_PREFIX/etc/conda/activate.d
@@ -45,6 +45,9 @@ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
     unset CC
     unset CXX
     unset CUDA_HOME
+
+conda deactivate
+conda activate GaussianTalker
 
 which nvcc
 nvcc --version
