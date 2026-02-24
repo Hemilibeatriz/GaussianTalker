@@ -23,19 +23,32 @@ For more information, please check out our [Paper](https://arxiv.org/abs/2404.16
 We implemented & tested **GaussianTalker** with NVIDIA RTX 3090 and A6000 GPU.
 
 Run the below codes for the environment setting. ( details are in requirements.txt )
+
 Updated by Hemilibeatriz
+
 ```bash
-git clone https://github.com/cvlab-kaist/GaussianTalker.git
+git clone https://github.com/Hemilibeatriz/GaussianTalker.git
 cd GaussianTalker
 git submodule update --init --recursive
 conda create -n GaussianTalker python=3.7 
 conda activate GaussianTalker
 
-export CC=/usr/bin/gcc-9
-export CXX=/usr/bin/g++-9
-export CUDA_HOME=/usr/local/cuda-11.3
-export PATH=$CUDA_HOME/bin:$PATH
-export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
+nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+    export CC=/usr/bin/gcc-9
+    export CXX=/usr/bin/g++-9
+    export CUDA_HOME=/usr/local/cuda-11.3
+    export PATH=$CUDA_HOME/bin:$PATH
+    export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
+    unset CC
+    unset CXX
+    unset CUDA_HOME
+
+which nvcc
+nvcc --version
+echo $CUDA_HOME
 
 pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 
