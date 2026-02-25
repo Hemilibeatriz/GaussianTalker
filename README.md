@@ -30,7 +30,7 @@ Updated by Hemilibeatriz
 git clone https://github.com/Hemilibeatriz/GaussianTalker.git
 cd GaussianTalker
 git submodule update --init --recursive
-conda create -n GaussianTalker python=3.7 -y
+conda create -n GaussianTalker python=3.8 -y
 conda activate GaussianTalker
 
 mkdir -p $CONDA_PREFIX/etc/conda/activate.d
@@ -38,13 +38,17 @@ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
 nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
     export CC=/usr/bin/gcc-9
     export CXX=/usr/bin/g++-9
-    export CUDA_HOME=/usr/local/cuda-11.3
+    export CUDA_HOME=/usr/local/cuda-11.8
     export PATH=$CUDA_HOME/bin:$PATH
     export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+    export TORCH_CUDA_ARCH_LIST="8.9"
+    export CUB_HOME=$HOME/cub
 nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
     unset CC
     unset CXX
     unset CUDA_HOME
+    unset TORCH_CUDA_ARCH_LIST
+    unset CUB_HOME
 
 conda deactivate
 conda activate GaussianTalker
@@ -53,13 +57,13 @@ which nvcc
 nvcc --version
 echo $CUDA_HOME
 
-pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 
 pip install -r requirements.txt
 pip install -e submodules/custom-bg-depth-diff-gaussian-rasterization
 pip install -e submodules/simple-knn
-pip install "git+https://github.com/facebookresearch/pytorch3d.git"
-pip install tensorflow-gpu==2.8.0
+pip install pytorch3d==0.7.6
+pip install tensorflow==2.12.0
 pip install --upgrade "protobuf<=3.20.1"
 ```
 
