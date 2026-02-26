@@ -62,9 +62,9 @@ pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https
 pip install -r requirements.txt
 pip install -e submodules/custom-bg-depth-diff-gaussian-rasterization
 pip install -e submodules/simple-knn
-pip install pytorch3d==0.7.6
+pip install pytorch3d -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py38_cu118_pyt201/download.html
 pip install tensorflow==2.12.0
-pip install --upgrade "protobuf<=3.20.1"
+pip install protobuf==3.20.3
 ```
 
 
